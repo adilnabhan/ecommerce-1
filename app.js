@@ -1,76 +1,52 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize hamburger menu
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-  if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('show');
-    });
-  }
-
-  // Initialize lazy loading
-  const lazyImages = document.querySelectorAll('img.lazyload');
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          img.classList.remove('lazyload');
-          observer.unobserve(img);
-        }
-      });
-    });
-    lazyImages.forEach(img => observer.observe(img));
-  } else {
-    // Fallback for browsers without IntersectionObserver support
-    lazyImages.forEach(img => {
-      img.src = img.dataset.src;
-      img.classList.remove('lazyload');
-    });
-  }
-
-  // Initialize cart functionality
-  const cart = {};
-  const productGrid = document.getElementById('product-grid');
-  productGrid.addEventListener('click', event => {
-    if (event.target.classList.contains('add-to-cart')) {
-      const button = event.target;
-      const id = button.dataset.id;
-      const name = button.dataset.name;
-      const price = parseFloat(button.dataset.price);
-
-      if (cart[id]) {
-        cart[id].quantity += 1;
-      } else {
-        cart[id] = { name, price, quantity: 1 };
-      }
-
-      console.log('Cart:', cart);
-      alert(`${name} added to cart!`);
-    }
-  });
-
-  // Fetch and render products
-  fetchProducts();
+// Mobile Nav Toggle
+const hamburger = document.getElementById('hamburger-btn');
+const navPrimary = document.getElementById('nav-primary');
+hamburger.addEventListener('click', () => {
+  navPrimary.classList.toggle('open');
 });
-function fetchProducts() {
-  const productGrid = document.getElementById('product-grid');
-  productGrid.innerHTML = '<p>Loading products...</p>';
 
-  fetch('https://fakestoreapi.com/products')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(products => {
-      productGrid.innerHTML = '';
-      renderProducts(products);
-    })
-    .catch(error => {
-      console.error('Error fetching products:', error);
-      productGrid.innerHTML = '<p>Failed to load products. Please try again later.</p>';
-    });
+// Featured Products (FakeStore API)
+async function loadFeatured() {
+  try {
+    const res = await fetch('https://fakestoreapi.com/products?limit=4');
+    const products = await res.json();
+    const grid = document.getElementById('featured-grid');
+    grid.innerHTML = products.map(p => `
+      <div class="product-card">
+        <a href="product.html?id=${p.id}">
+          <img src="${p.image}" alt="${p.title}">
+        </a>
+        <div class="product-info">
+          <h3>${p.title}</h3>
+          <p class="price">₹${(p.price*75).toFixed(2)}</p>
+          <button class="add-cart" onclick="addToCart(${p.id})">Add to Cart</button>
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Failed loading featured', err);
+  }
 }
+
+// Cart Logic
+function addToCart(id) {
+  const key = 'cart';
+  const cart = JSON.parse(localStorage.getItem(key)) || [];
+  const idx = cart.findIndex(i=>i.id===id);
+  if (idx > -1) cart[idx].qty++;
+  else cart.push({id, qty:1});
+  localStorage.setItem(key, JSON.stringify(cart));
+  updateCartCount();
+}
+
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const count = cart.reduce((sum,i)=>sum+i.qty,0);
+  document.getElementById('cart-count').textContent = count;
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  loadFeatured();
+  updateCartCount();
+});
