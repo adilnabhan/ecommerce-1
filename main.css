@@ -74,3 +74,64 @@ body.home-bg {
   background: url('assets/home-bg.jpg') center/cover no-repeat fixed;
 }
 
+/* --- Auth Forms --- */
+.auth-section {
+  background: #fff;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+.form-group input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-group small.error {
+  color: #e91e63;
+  height: 1em;
+  margin-top: 0.25rem;
+}
+.password-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.password-wrap .toggle-pass {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.auth-form meter {
+  width: 100%;
+  height: 0.5rem;
+  margin-top: 0.25rem;
+}
+.auth-form .form-footer {
+  text-align: center;
+  margin-top: 1rem;
+}
+.auth-form .form-footer a {
+  color: #007bff;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .auth-section { margin: 1rem; padding: 1rem; }
+}

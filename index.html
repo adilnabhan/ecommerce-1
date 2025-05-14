@@ -4,33 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home — E-Shop</title>
-  
   <link rel="stylesheet" href="main.css" />
 </head>
 <body class="home-bg">
   ...
 
-
   <!-- NAVBAR -->
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo">E-Shop</a>
+
       <nav class="nav-primary" id="nav-primary">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="products.html">Products</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up</a></li>
         </ul>
       </nav>
+
       <div class="header-widgets">
+        <!-- Search -->
         <div class="search-wrap">
           <input type="text" id="search-input" placeholder="Search products…">
           <button aria-label="Search">🔍</button>
         </div>
+        <!-- Cart -->
         <a href="cart.html" class="cart-icon">
           🛒 <span class="cart-badge" id="cart-count">0</span>
         </a>
+        <!-- Hamburger (mobile) -->
         <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </button>
@@ -50,7 +55,9 @@
   <!-- FEATURED PRODUCTS -->
   <section class="featured-products container">
     <h2>Featured Products</h2>
-    <div class="product-grid" id="featured-grid"></div>
+    <div class="product-grid" id="featured-grid">
+      <!-- Loaded by app.js -->
+    </div>
   </section>
 
   <!-- ADD-TO-CART FEEDBACK -->
@@ -58,6 +65,7 @@
     <span id="feedback-text"></span>
   </div>
 
+  <!-- SCRIPTS -->
   <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login — E-Shop</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">E-Shop</a>
+      <nav class="nav-primary" id="nav-primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-widgets">
+        <a href="cart.html" class="cart-icon">
+          🛒 <span class="cart-badge" id="cart-count">0</span>
+        </a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- LOGIN FORM -->
+  <section class="auth-section container">
+    <form id="login-form" class="auth-form" novalidate>
+      <h2>Login</h2>
+      <div class="form-group">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" required>
+        <small class="error" id="login-email-error"></small>
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <div class="password-wrap">
+          <input type="password" id="login-password" required minlength="8">
+          <button type="button" class="toggle-pass" data-target="login-password">👁️</button>
+        </div>
+        <small class="error" id="login-password-error"></small>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <p class="form-footer">
+        <a href="forgot-password.html">Forgot Password?</a> | 
+        Don’t have an account? <a href="signup.html">Sign Up</a>
+      </p>
+    </form>
+  </section>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
