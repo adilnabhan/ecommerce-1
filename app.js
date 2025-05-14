@@ -5,13 +5,39 @@ hamburger.addEventListener('click', () => {
   navPrimary.classList.toggle('open');
 });
 
+// Add-to-Cart Helpers
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart'))||[];
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  document.querySelectorAll('#cart-count').forEach(el=>el.textContent=count);
+}
+
+function showAddFeedback(name) {
+  const fb = document.getElementById('add-feedback');
+  document.getElementById('feedback-text').textContent = `"${name}" added to cart!`;
+  fb.classList.remove('hidden'); fb.classList.add('show');
+  setTimeout(()=>{ fb.classList.remove('show'); fb.classList.add('hidden'); }, 1800);
+}
+
+function addToCart(item) {
+  const key  = 'cart';
+  const cart = JSON.parse(localStorage.getItem(key))||[];
+  const { id, name, price, image, variation=null, qty=1 } = item;
+  const existing = cart.find(e=>e.id===id && e.variation===variation);
+  if (existing) existing.qty = Math.max(1, existing.qty+qty);
+  else cart.push({ id,name,price,image,variation,qty });
+  localStorage.setItem(key, JSON.stringify(cart));
+  updateCartCount();
+  showAddFeedback(name);
+}
+
 // Featured Products (FakeStore API)
 async function loadFeatured() {
   try {
     const res = await fetch('https://fakestoreapi.com/products?limit=4');
-    const products = await res.json();
+    const prods = await res.json();
     const grid = document.getElementById('featured-grid');
-    grid.innerHTML = products.map(p => `
+    grid.innerHTML = prods.map(p => `
       <div class="product-card">
         <a href="product.html?id=${p.id}">
           <img src="${p.image}" alt="${p.title}">
@@ -19,34 +45,17 @@ async function loadFeatured() {
         <div class="product-info">
           <h3>${p.title}</h3>
           <p class="price">₹${(p.price*75).toFixed(2)}</p>
-          <button class="add-cart" onclick="addToCart(${p.id})">Add to Cart</button>
+          <button class="add-cart" onclick='addToCart({
+            id:${p.id},name:"${p.title}",price:${(p.price*75).toFixed(2)},
+            image:"${p.image}",qty:1
+          })'>Add to Cart</button>
         </div>
       </div>
     `).join('');
-  } catch (err) {
-    console.error('Failed loading featured', err);
-  }
+  } catch (e) { console.error(e); }
 }
 
-// Cart Logic
-function addToCart(id) {
-  const key = 'cart';
-  const cart = JSON.parse(localStorage.getItem(key)) || [];
-  const idx = cart.findIndex(i=>i.id===id);
-  if (idx > -1) cart[idx].qty++;
-  else cart.push({id, qty:1});
-  localStorage.setItem(key, JSON.stringify(cart));
-  updateCartCount();
-}
-
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const count = cart.reduce((sum,i)=>sum+i.qty,0);
-  document.getElementById('cart-count').textContent = count;
-}
-
-// Init
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded',()=>{
   loadFeatured();
   updateCartCount();
 });

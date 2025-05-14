@@ -4,51 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Cart — E-Shop</title>
-  <body>
-    <!-- START NAVBAR -->
-    <header class="site-header">
-      <div class="container">
-        <!-- Logo -->
-        <a href="index.html" class="logo">E-Shop</a>
-  
-        <!-- Desktop Nav Links -->
-        <nav class="nav-primary" id="nav-primary">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </nav>
-  
-        <!-- Search + Cart + Hamburger -->
-        <div class="header-widgets">
-          <!-- Search -->
-          <div class="search-wrap">
-            <input type="text" id="search-input" placeholder="Search products…">
-            <button aria-label="Search"><span class="icon-search">🔍</span></button>
-          </div>
-  
-          <!-- Cart Icon -->
-          <a href="cart.html" class="cart-icon">
-            🛒 <span class="cart-badge" id="cart-count">0</span>
-          </a>
-  
-          <!-- Hamburger (mobile) -->
-          <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-    </header>
-    <!-- END NAVBAR -->
-  
-    <!-- …rest of page content… -->
-  
   <link rel="stylesheet" href="main.css" />
 </head>
 <body>
-  <!-- same header/nav -->
+  <!-- NAVBAR (copy from index.html) -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">E-Shop</a>
+      <nav class="nav-primary" id="nav-primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-widgets">
+        <div class="search-wrap">
+          <input type="text" id="search-input" placeholder="Search products…">
+          <button aria-label="Search">🔍</button>
+        </div>
+        <a href="cart.html" class="cart-icon">
+          🛒 <span class="cart-badge" id="cart-count">0</span>
+        </a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
   <section class="container cart-container">
     <h1>Your Shopping Cart</h1>
@@ -56,7 +40,10 @@
     <div id="cart-total"></div>
   </section>
 
+  <div id="add-feedback" class="add-feedback hidden">
+    <span id="feedback-text"></span>
+  </div>
+
   <script src="cart.js"></script>
 </body>
-
 </html>

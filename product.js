@@ -1,19 +1,17 @@
+// reuse addToCart, updateCartCount, showAddFeedback from app.js
+
 function getId() {
     return new URLSearchParams(window.location.search).get('id');
   }
-  
-  // Zoom on hover
   function initZoom(imgEl) {
     imgEl.addEventListener('mousemove', e => {
-      const rect = imgEl.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      const r = imgEl.getBoundingClientRect();
+      const x = ((e.clientX-r.left)/r.width)*100;
+      const y = ((e.clientY-r.top)/r.height)*100;
       imgEl.style.transformOrigin = `${x}% ${y}%`;
       imgEl.style.transform = 'scale(2)';
     });
-    imgEl.addEventListener('mouseleave', () => {
-      imgEl.style.transform = 'scale(1)';
-    });
+    imgEl.addEventListener('mouseleave', () => imgEl.style.transform = 'scale(1)');
   }
   
   async function renderDetail() {
@@ -21,8 +19,8 @@ function getId() {
     try {
       const res = await fetch(`https://fakestoreapi.com/products/${id}`);
       const p = await res.json();
-      const container = document.getElementById('product-detail');
-      container.innerHTML = `
+      const c = document.getElementById('product-detail');
+      c.innerHTML = `
         <div class="detail-img-wrap">
           <img id="detail-img" src="${p.image}" alt="${p.title}" class="detail-img">
         </div>
@@ -41,27 +39,15 @@ function getId() {
       const imgEl = document.getElementById('detail-img');
       initZoom(imgEl);
   
-      // Quantity handlers
       let qty = 1;
-      document.getElementById('inc-qty').onclick = () => {
-        qty = Math.min(10, qty+1);
-        document.getElementById('qty').value = qty;
-      };
-      document.getElementById('dec-qty').onclick = () => {
-        qty = Math.max(1, qty-1);
-        document.getElementById('qty').value = qty;
-      };
-  
-      document.getElementById('add-detail-cart').onclick = () => {
-        for (let i=0; i<qty; i++) addToCart(p.id);
-      };
+      document.getElementById('inc-qty').onclick = ()=>{ qty=Math.min(10,qty+1); document.getElementById('qty').value=qty; };
+      document.getElementById('dec-qty').onclick = ()=>{ qty=Math.max(1,qty-1); document.getElementById('qty').value=qty; };
+      document.getElementById('add-detail-cart').onclick = ()=>{ addToCart({
+        id:p.id,name:p.title,price:Math.round(p.price*75),image:p.image,qty
+      }); };
       updateCartCount();
-    } catch (err) {
-      console.error('Error loading detail', err);
-    }
+    } catch(e){ console.error(e); }
   }
   
-  // reuse addToCart & updateCartCount from app.js
-  
-  document.addEventListener('DOMContentLoaded', renderDetail);
+  document.addEventListener('DOMContentLoaded',renderDetail);
   

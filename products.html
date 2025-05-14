@@ -7,50 +7,41 @@
   <link rel="stylesheet" href="main.css" />
 </head>
 <body>
-    <!-- START NAVBAR -->
-    <header class="site-header">
-      <div class="container">
-        <!-- Logo -->
-        <a href="index.html" class="logo">E-Shop</a>
-  
-        <!-- Desktop Nav Links -->
-        <nav class="nav-primary" id="nav-primary">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </nav>
-  
-        <!-- Search + Cart + Hamburger -->
-        <div class="header-widgets">
-          <!-- Search -->
-          <div class="search-wrap">
-            <input type="text" id="search-input" placeholder="Search products…">
-            <button aria-label="Search"><span class="icon-search">🔍</span></button>
-          </div>
-  
-          <!-- Cart Icon -->
-          <a href="cart.html" class="cart-icon">
-            🛒 <span class="cart-badge" id="cart-count">0</span>
-          </a>
-  
-          <!-- Hamburger (mobile) -->
-          <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-          </button>
+  <!-- NAVBAR (copy from index.html) -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">E-Shop</a>
+      <nav class="nav-primary" id="nav-primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-widgets">
+        <div class="search-wrap">
+          <input type="text" id="search-input" placeholder="Search products…">
+          <button aria-label="Search">🔍</button>
         </div>
+        <a href="cart.html" class="cart-icon">
+          🛒 <span class="cart-badge" id="cart-count">0</span>
+        </a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </header>
-    <!-- END NAVBAR -->
-  
-    <!-- …rest of page content… -->
-  
+    </div>
+  </header>
+
   <section class="container">
     <h1>All Products</h1>
     <div class="product-grid" id="product-list"></div>
   </section>
+
+  <div id="add-feedback" class="add-feedback hidden">
+    <span id="feedback-text"></span>
+  </div>
 
   <script src="products.js"></script>
 </body>
