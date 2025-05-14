@@ -1,36 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up — E-Shop</title>
   <link rel="stylesheet" href="main.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {/* same as above */};
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="init-auth.js"></script>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo">E-Shop</a>
-      <nav class="nav-primary" id="nav-primary">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="header-widgets">
-        <a href="cart.html" class="cart-icon">
-          🛒 <span class="cart-badge" id="cart-count">0</span>
-        </a>
-        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- SIGNUP FORM -->
+  <header class="site-header">…</header>
   <section class="auth-section container">
     <form id="signup-form" class="auth-form" novalidate>
       <h2>Sign Up</h2>
@@ -65,7 +48,6 @@
       </p>
     </form>
   </section>
-
   <script src="auth.js"></script>
   <script src="app.js"></script>
 </body>

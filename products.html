@@ -5,34 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Products — E-Shop</title>
   <link rel="stylesheet" href="main.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {/* same as above */};
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="init-auth.js"></script>
 </head>
 <body>
-  <!-- NAVBAR (copy from index.html) -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo">E-Shop</a>
-      <nav class="nav-primary" id="nav-primary">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="header-widgets">
-        <div class="search-wrap">
-          <input type="text" id="search-input" placeholder="Search products…">
-          <button aria-label="Search">🔍</button>
-        </div>
-        <a href="cart.html" class="cart-icon">
-          🛒 <span class="cart-badge" id="cart-count">0</span>
-        </a>
-        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
+  <!-- NAVBAR (same as index) -->
+  <header class="site-header">…</header>
 
   <section class="container">
     <h1>All Products</h1>
