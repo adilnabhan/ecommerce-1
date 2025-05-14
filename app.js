@@ -59,3 +59,17 @@ document.addEventListener('DOMContentLoaded',()=>{
   loadFeatured();
   updateCartCount();
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const lazyImgs = document.querySelectorAll('img[data-src]');
+    const obs = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const img = entry.target;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        observer.unobserve(img);
+      });
+    });
+    lazyImgs.forEach(img => obs.observe(img));
+  });
+  

@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login — E-Shop</title>
-  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="main.min.css">
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script>
-    const firebaseConfig = {/* same as above */};
+    const firebaseConfig = {/* same as index */};
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="init-auth.js"></script>
+  <script src="init-auth.min.js"></script>
 </head>
 <body>
-  <header class="site-header">…</header>
+  <header class="site-header">…COPY NAVBAR…</header>
+
   <section class="auth-section container">
     <form id="login-form" class="auth-form" novalidate>
       <h2>Login</h2>
@@ -37,7 +38,9 @@
       </p>
     </form>
   </section>
-  <script src="auth.js"></script>
-  <script src="app.js"></script>
+
+  <script src="lazyload.min.js"></script>
+  <script src="auth.min.js"></script>
+  <script src="app.min.js"></script>
 </body>
 </html>

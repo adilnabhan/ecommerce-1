@@ -4,25 +4,69 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Product Detail — E-Shop</title>
-  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="main.min.css" />
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script>
-    const firebaseConfig = {/* same as above */};
+    // 🔑 Your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="init-auth.js"></script>
+  <script src="init-auth.min.js"></script>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="site-header">…</header>
+  <!-- NAVBAR (identical to index.html) -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="assets/logo.svg" alt="E-Shop">
+      </a>
+      <nav class="nav-primary" id="nav-primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+      </nav>
+      <div class="header-widgets">
+        <div class="search-wrap">
+          <input type="text" id="search-input" placeholder="Search products…">
+          <button aria-label="Search">🔍</button>
+        </div>
+        <a href="cart.html" class="cart-icon">
+          <svg><use xlink:href="assets/logo.svg#cart"/></svg>
+          <span class="cart-badge" id="cart-count">0</span>
+        </a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-  <section class="container product-detail" id="product-detail"></section>
+  <!-- Empty Detail Section -->
+  <section class="container product-detail" id="product-detail">
+    <!-- Nothing here by design; filled in by product.js -->
+  </section>
 
+  <!-- Feedback Toast (hidden until add-to-cart) -->
   <div id="add-feedback" class="add-feedback hidden">
     <span id="feedback-text"></span>
   </div>
 
-  <script src="product.js"></script>
+  <!-- Lazyload Fallback & Dynamic Script -->
+  <script src="lazyload.min.js"></script>
+  <script src="product.min.js"></script>
 </body>
 </html>

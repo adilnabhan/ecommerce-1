@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home — E-Shop</title>
-  <link rel="stylesheet" href="main.css" />
-  <!-- Firebase SDKs -->
+  <!-- Minified CSS -->
+  <link rel="stylesheet" href="main.min.css">
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script>
-    // 🔑 Replace with your Firebase config
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -20,13 +20,15 @@
     };
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="init-auth.js"></script>
+  <script src="init-auth.min.js"></script>
 </head>
-<body>
+<body class="home-bg">
   <!-- NAVBAR -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo">E-Shop</a>
+      <a href="index.html" class="logo">
+        <img src="assets/logo.svg" alt="E-Shop">
+      </a>
       <nav class="nav-primary" id="nav-primary">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -43,7 +45,8 @@
           <button aria-label="Search">🔍</button>
         </div>
         <a href="cart.html" class="cart-icon">
-          🛒 <span class="cart-badge" id="cart-count">0</span>
+          <svg><use xlink:href="assets/logo.svg#cart"/></svg>
+          <span class="cart-badge" id="cart-count">0</span>
         </a>
         <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
           <span></span><span></span><span></span>
@@ -52,7 +55,7 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO with Responsive Background -->
   <section class="hero">
     <div class="container">
       <h1>Big Billion Offer</h1>
@@ -72,6 +75,9 @@
     <span id="feedback-text"></span>
   </div>
 
-  <script src="app.js"></script>
+  <!-- Lazyload Fallback -->
+  <script src="lazyload.min.js"></script>
+  <!-- Minified JS -->
+  <script src="app.min.js"></script>
 </body>
 </html>

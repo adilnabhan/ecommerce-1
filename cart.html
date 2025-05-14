@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your Cart — E-Shop</title>
-  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="main.min.css">
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script>
-    const firebaseConfig = {/* same as above */};
+    const firebaseConfig = {/* same as index */};
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="init-auth.js"></script>
+  <script src="init-auth.min.js"></script>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="site-header">…</header>
+  <header class="site-header">…COPY NAVBAR…</header>
 
   <section class="container cart-container">
     <h1>Your Shopping Cart</h1>
@@ -27,6 +25,7 @@
     <span id="feedback-text"></span>
   </div>
 
-  <script src="cart.js"></script>
+  <script src="lazyload.min.js"></script>
+  <script src="cart.min.js"></script>
 </body>
 </html>
